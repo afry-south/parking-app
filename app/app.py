@@ -18,19 +18,20 @@ def index():
 
 @app.route("/registered", methods=["POST"])
 def register_car():
-    name = request.form["name"]
     reg = request.form["reg"]
+    fname = request.form["fname"]
+    lname = request.form["lname"]
 
-    send_email(name, reg)
+    # send_email(reg, fname, lname)
 
-    return render_template("registered.html", name=name, reg=reg)
+    return render_template("registered.html", reg=reg, fname=fname, lname=lname)
 
 
-def send_email(name, reg):
+def send_email(reg, fname, lname):
     sender = "afryparkingapp@gmail.com"
-    receiver = "emil.aminy@afry.com>"
+    receiver = "afryparkingapp+1@gmail.com"
     subject = "Parking"
-    text = f"Name: {name}\nReg: {reg}"
+    text = f"Name: {fname} {lname}\nReg: {reg}"
 
     message = f"From: {sender}\nTo: {receiver}\nSubject: {subject}\n\n{text}"
 
