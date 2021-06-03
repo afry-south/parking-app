@@ -1,5 +1,5 @@
 import smtplib
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 gmail = smtplib.SMTP('smtp.gmail.com', 587)
 gmail.ehlo()
@@ -13,7 +13,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    show_modal = "false"
+    if "show_modal" in request.args:
+        show_modal = request.args["show_modal"]
+
+    print(show_modal)
+    return render_template("index.html", show_modal=show_modal)
 
 
 @app.route("/registered", methods=["POST"])
@@ -24,7 +29,7 @@ def register_car():
 
     # send_email(reg, fname, lname)
 
-    return render_template("registered.html", reg=reg, fname=fname, lname=lname)
+    return redirect(url_for("index", show_modal="true"), code=307)
 
 
 def send_email(reg, fname, lname):
