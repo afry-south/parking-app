@@ -40,7 +40,7 @@
             <input class="form-check-input mt-0" type="checkbox" onclick="toggleEmail()" value="" id="emailCheck">
           </div>
           <input type="email" class="name form-control" name="emailCopy" autocomplete="off" placeholder="email copy"
-          id="emailCopy">
+          id="emailCopy" disabled=true>
         </div>
         <div class="input-group mb-3">
         </div>
@@ -54,9 +54,11 @@
 
   function toggleEmail() {
     if (fname.value !== "" && lname.value !== "" && document.getElementById("emailCheck").checked) {
+      document.getElementById("emailCopy").disabled = false;
       fill_email();
     } else {
       document.getElementById("emailCheck").checked = false;
+      document.getElementById("emailCopy").disabled = true;
       document.getElementById("emailCopy").value = "";
     }
   }
