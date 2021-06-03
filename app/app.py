@@ -27,7 +27,6 @@ def register_car():
 
 
 def send_email(name, reg):
-
     sender = "afryparkingapp@gmail.com"
     reciever = "marcus.lissner@afry.com>"
     subject = "Parking"
