@@ -46,7 +46,7 @@ body {
     font-size: x-large !important;
 }
 
-input {
+.input {
     margin-top: 5px !important;
     margin-left: 5px !important;
     margin-right: 5px !important;
