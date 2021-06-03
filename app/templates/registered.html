@@ -16,16 +16,18 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <title>AFRY Parking</title>
+  <meta http-equiv="refresh" content="5;/">
 </head>
 
 <body>
   <div class="img">
     <img alt="logo" src="{{ url_for('static', filename='logo.svg') }}">
   </div>
-  <div class="center">
+  <div class="center2">
+    <h1>Success!</h1>
     <h4>{{ reg }} has been registered by {{ fname }} {{ lname }}</h4>
       <form action="/" method="GET">
-        <input class="btn btn-success" type="submit" value="Register another car">
+        <input class="btn btn-success ok" type="submit" value="OK">
       </form>
   </div>
 </body>

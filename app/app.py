@@ -1,12 +1,16 @@
+import json
 import smtplib
 from flask import Flask, render_template, request, redirect, url_for
+
+config = json.load(open("app/config.json","r"))
+sender = config["sender"]
+password = config["password"]
+receiver = config["receiver"]
 
 gmail = smtplib.SMTP('smtp.gmail.com', 587)
 gmail.ehlo()
 gmail.starttls()
-username = "afryparkingapp@gmail.com"
-password = "Parking123."
-gmail.login(username, password)
+gmail.login(sender, password)
 
 app = Flask(__name__)
 
@@ -22,14 +26,12 @@ def register_car():
     fname = request.form["fname"]
     lname = request.form["lname"]
 
-    # send_email(reg, fname, lname)
+    send_email(reg, fname, lname)
 
     return render_template("registered.html", reg=reg, fname=fname, lname=lname)
 
 
 def send_email(reg, fname, lname):
-    sender = "afryparkingapp@gmail.com"
-    receiver = "afryparkingapp+1@gmail.com"
     subject = "Parking"
     text = f"Name: {fname} {lname}\nReg: {reg}"
 
