@@ -13,12 +13,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    show_modal = "false"
-    if "show_modal" in request.args:
-        show_modal = request.args["show_modal"]
-
-    print(show_modal)
-    return render_template("index.html", show_modal=show_modal)
+    return render_template("index.html")
 
 
 @app.route("/registered", methods=["POST"])
@@ -29,7 +24,7 @@ def register_car():
 
     # send_email(reg, fname, lname)
 
-    return redirect(url_for("index", show_modal="true"))
+    return render_template("registered.html", reg=reg, fname=fname, lname=lname)
 
 
 def send_email(reg, fname, lname):

@@ -23,15 +23,9 @@
     <img alt="logo" src="{{ url_for('static', filename='logo.svg') }}">
   </div>
   <div class="center">
-    <h1>AFRY Parking</h1>
-    <h4>Enter Your vehicle plate number and name and click submit.</h3>
-      <form action="/registered" method="POST">
-        <div class="input-group mb-3">
-          <input type="text" class="reg form-control" name="reg" placeholder="ABC123" required>
-          <input type="text" class="name form-control" name="fname" placeholder="First Name" required>
-          <input type="text" class="name form-control" name="lname" placeholder="Last Name" required>
-          <input class="btn btn-success" type="submit" value="Submit">
-        </div>
+    <h4>{{ reg }} has been registered by {{ fname }} {{ lname }}</h4>
+      <form action="/" method="GET">
+        <input class="btn btn-success" type="submit" value="Register another car">
       </form>
   </div>
 </body>
