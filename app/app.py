@@ -1,6 +1,11 @@
 import smtplib 
 from flask import Flask, render_template, request
 
+gmail = smtplib.SMTP('smtp.gmail.com', 587)
+gmail.ehlo()
+gmail.starttls()
+gmail.login(username,password)
+
 app = Flask(__name__)
 
 
@@ -30,12 +35,8 @@ def send_email(name, reg):
 
     message = f"From: {sender}\nTo: {reciever}\nSubject: {subject}\n\n{text}"
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login(username,password)
-    server.sendmail(sender, receiver, message)
-    server.quit()
+    gmail.sendmail(sender, receiver, message)
 
 
 app.run(host="0.0.0.0", port=8080, debug=True) # Den här ska inte ligga här när vi deployar grejerna
+gmail.quit()
