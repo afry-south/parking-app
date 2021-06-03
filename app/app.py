@@ -1,10 +1,10 @@
-import smtplib 
+import smtplib
 from flask import Flask, render_template, request
 
 gmail = smtplib.SMTP('smtp.gmail.com', 587)
 gmail.ehlo()
 gmail.starttls()
-gmail.login(username,password)
+gmail.login(username, password)
 
 app = Flask(__name__)
 
@@ -20,13 +20,13 @@ def register_car():
     reg = request.form["reg"]
 
     send_email(name, email, reg)
-    
+
     return render_template("registered.html", name=name, reg=reg)
 
 
 def send_email(name, reg):
-    username="afryparkingapp@gmail.com"
-    password="Parking123."
+    username = "afryparkingapp@gmail.com"
+    password = "Parking123."
 
     sender = "afryparkingapp@gmail.com"
     reciever = "marcus.lissner@afry.com>"
@@ -38,5 +38,6 @@ def send_email(name, reg):
     gmail.sendmail(sender, receiver, message)
 
 
-app.run(host="0.0.0.0", port=8080, debug=True) # Den här ska inte ligga här när vi deployar grejerna
+# Den här ska inte ligga här när vi deployar grejerna
+app.run(host="0.0.0.0", port=8080, debug=True)
 gmail.quit()
