@@ -4,6 +4,8 @@ from flask import Flask, render_template, request
 gmail = smtplib.SMTP('smtp.gmail.com', 587)
 gmail.ehlo()
 gmail.starttls()
+username = "afryparkingapp@gmail.com"
+password = "Parking123."
 gmail.login(username, password)
 
 app = Flask(__name__)
@@ -25,8 +27,6 @@ def register_car():
 
 
 def send_email(name, reg):
-    username = "afryparkingapp@gmail.com"
-    password = "Parking123."
 
     sender = "afryparkingapp@gmail.com"
     reciever = "marcus.lissner@afry.com>"
