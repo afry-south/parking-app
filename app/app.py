@@ -21,18 +21,18 @@ def register_car():
     name = request.form["name"]
     reg = request.form["reg"]
 
-    send_email(name, email, reg)
+    send_email(name, reg)
 
     return render_template("registered.html", name=name, reg=reg)
 
 
 def send_email(name, reg):
     sender = "afryparkingapp@gmail.com"
-    reciever = "marcus.lissner@afry.com>"
+    receiver = "emil.aminy@afry.com>"
     subject = "Parking"
     text = f"Name: {name}\nReg: {reg}"
 
-    message = f"From: {sender}\nTo: {reciever}\nSubject: {subject}\n\n{text}"
+    message = f"From: {sender}\nTo: {receiver}\nSubject: {subject}\n\n{text}"
 
     gmail.sendmail(sender, receiver, message)
 
