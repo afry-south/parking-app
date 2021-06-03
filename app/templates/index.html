@@ -27,13 +27,39 @@
     <h4>Enter Your vehicle plate number and name and click submit.</h3>
       <form action="/registered" method="POST">
         <div class="input-group mb-3">
-          <input type="text" class="reg form-control" name="reg" placeholder="ABC123" required>
-          <input type="text" class="name form-control" name="fname" placeholder="First Name" required>
-          <input type="text" class="name form-control" name="lname" placeholder="Last Name" required>
+          <input type="text" class="reg form-control" name="reg" onkeyup="this.value = this.value.toUpperCase();"
+            autocomplete="off" placeholder="ABC123" required>
+          <input type="text" class="name form-control" name="fname" placeholder="First Name" autocomplete="off"
+            id="fname" required>
+          <input type="text" class="name form-control" name="lname" placeholder="Last Name" autocomplete="off"
+            id="lname" required>
           <input class="btn btn-success" type="submit" value="Submit">
+        </div>
+        <div class="input-group mb-3">
+          <input class="form-check-input" type="checkbox" onclick="toggleEmail()" value="" id="emailCheck">
+          <input type="email" class="name form-control" name="emailCopy" autocomplete="off" placeholder="email copy"
+            id="emailCopy">
         </div>
       </form>
   </div>
 </body>
+
+<script>
+  var fname = document.getElementById("fname");
+  var lname = document.getElementById("lname");
+
+  function toggleEmail() {
+    if (fname.value !== "" && lname.value !== "" && document.getElementById("emailCheck").checked) {
+      fill_email();
+    } else {
+      document.getElementById("emailCheck").checked = false;
+      document.getElementById("emailCopy").value = "";
+    }
+  }
+
+  function fill_email() {
+    document.getElementById("emailCopy").value = fname.value.toLowerCase() + "." + lname.value.toLowerCase() + "@afry.com";
+  }
+</script>
 
 </html>

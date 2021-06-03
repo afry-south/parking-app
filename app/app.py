@@ -25,19 +25,24 @@ def register_car():
     reg = request.form["reg"]
     fname = request.form["fname"]
     lname = request.form["lname"]
+    emailCopy = request.form["emailCopy"]
 
-    send_email(reg, fname, lname)
+    resp = send_email(reg, fname, lname, receiver, emailCopy)
 
-    return render_template("registered.html", reg=reg, fname=fname, lname=lname)
+    return render_template("registered.html", reg=reg, fname=fname, lname=lname, resp=resp)
 
-
-def send_email(reg, fname, lname):
+def send_email(reg, fname, lname, receiver, emailCopy):
     subject = "Parking"
     text = f"Name: {fname} {lname}\nReg: {reg}"
-
     message = f"From: {sender}\nTo: {receiver}\nSubject: {subject}\n\n{text}"
 
-    gmail.sendmail(sender, receiver, message)
+    if emailCopy:
+        receiver = [receiver, emailCopy]
+
+    resp = gmail.sendmail(sender, receiver, message)
+    print(resp)
+    
+    return not resp
 
 
 # Den här ska inte ligga här när vi deployar grejerna

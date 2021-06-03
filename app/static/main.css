@@ -19,6 +19,7 @@ body {
     border-radius: 25px;
     text-align: center;
     background-color: white;
+    min-width: 200px;
 }
 
 .center2 {
@@ -32,8 +33,8 @@ body {
 }
 
 .reg {
-    max-width: 80px;
-    min-width: 80px !important;
+    max-width: 100px;
+    min-width: 100px !important;
 }
 
 .name {
