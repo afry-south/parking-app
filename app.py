@@ -2,7 +2,7 @@ import json
 import smtplib
 from flask import Flask, render_template, request, redirect, url_for
 
-config = json.load(open("app/config.json","r"))
+config = json.load(open("config.json","r"))
 sender = config["sender"]
 password = config["password"]
 receiver = config["receiver"]
