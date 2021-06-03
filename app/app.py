@@ -13,24 +13,29 @@ def hello_world():
 def register_car():
     name = request.form["name"]
     reg = request.form["reg"]
+
+    send_email(name, email, reg)
     
-    # username=""
-    # password=""
-
-    # FROM = ""
-    # TO = ""
-    # SUBJECT = "test"
-    # TEXT = f"Name: {name}\nReg: {reg}"
-
-    # MESSAGE = f"From: {FROM}\nTo: {TO}\nSubject: {SUBJECT}\n\n{TEXT}"
-
-    # server = smtplib.SMTP('smtp.gmail.com', 587)
-    # server.ehlo()
-    # server.starttls()
-    # server.login(username,password)
-    # server.sendmail(FROM, TO, MESSAGE)
-    # server.quit()
-
     return render_template("registered.html", name=name, reg=reg)
+
+
+def send_email(name, reg):
+    username="afryparkingapp@gmail.com"
+    password="Parking123."
+
+    sender = "afryparkingapp@gmail.com"
+    reciever = "marcus.lissner@afry.com>"
+    subject = "Parking"
+    text = f"Name: {name}\nReg: {reg}"
+
+    message = f"From: {sender}\nTo: {reciever}\nSubject: {subject}\n\n{text}"
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(sender, receiver, message)
+    server.quit()
+
 
 app.run(host="0.0.0.0", port=8080, debug=True) # Den här ska inte ligga här när vi deployar grejerna
