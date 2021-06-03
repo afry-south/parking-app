@@ -29,7 +29,7 @@ def register_car():
 
     # send_email(reg, fname, lname)
 
-    return redirect(url_for("index", show_modal="true"), code=307)
+    return redirect(url_for("index", show_modal="true"))
 
 
 def send_email(reg, fname, lname):
